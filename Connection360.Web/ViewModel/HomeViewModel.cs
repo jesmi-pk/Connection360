@@ -8,8 +8,10 @@ namespace Connection360.Web.ViewModel
 {
     public class HomeViewModel
     {
-        public List<Brand> Brands { get; set; }
-        public List<Sku> Skus { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string SkuName { get; set; }
+    
     }
 
 }

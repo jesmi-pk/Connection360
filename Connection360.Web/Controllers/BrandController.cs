@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace Connection360.Web.Controllers
 {
@@ -13,13 +14,24 @@ namespace Connection360.Web.Controllers
     {
         BrandService brandService = new BrandService();
         SkuService skuService = new SkuService();
-        HomeViewModel homeViewModel = new HomeViewModel();
-        public ActionResult Index()
+        HomeViewModel homeViewModel = new HomeViewModel();    
+        public ActionResult Index(string brandName, string skuName,int? page)
         {
-            homeViewModel.Brands =brandService.GetAll() ;
-            homeViewModel.Skus =skuService.GetAll() ;
-            
-            return View(homeViewModel);
+            var result = (from b in brandService.brands
+                          join s in skuService.skus on b.Id
+                          equals s.Id select new HomeViewModel()
+                          {
+                              Id = b.Id,
+                              Name = b.Name,
+                              SkuName = s.Name
+                          }).ToList();
+            if (!String.IsNullOrWhiteSpace(brandName) && !String.IsNullOrWhiteSpace(skuName))
+            {               
+               result = result.Where(r => r.Name.Contains(brandName) || r.SkuName.Contains(skuName)).ToList();               
+            }
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(result.ToPagedList(pageNumber,pageSize));
         }
     }
 }

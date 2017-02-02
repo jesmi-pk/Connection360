@@ -1,14 +1,44 @@
-﻿@model Connection360.Web.ViewModel.HomeViewModel
+﻿@model PagedList.IPagedList<Connection360.Web.ViewModel.HomeViewModel>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Index";
 }
-
-<table class="table table-bordered table-responsive table-hover">
-    <tr>
-
-        <th>@Html.DisplayNameFor(model=>model.Brands)</th>
-       
-
+<link href="../Content/StyleSheet.css" rel="stylesheet" />
+<br />
+<br />
+<div>
+    @using (Html.BeginForm())
+    {
+        <p>
+            Title: @Html.TextBox("brandName")  Title: @Html.TextBox("skuName") 
+            <input type="submit" value="Search" />
+        </p>
+    }  
+</div>
+<br />
+<br />
+<div class="container">
+    <table class="table table-responsive table-hover">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>SKU Name</th>         
         </tr>
-    
-</table>  
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>                    
+                    @item.Id
+                </td>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.SkuName
+                </td>
+            </tr>
+        }         
+    </table>
+</div> 
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
