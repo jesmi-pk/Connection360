@@ -9,6 +9,8 @@
 <div>
     @using (Html.BeginForm())
     {
+        <p>
+            Title: @Html.TextBox("brandName")  Title: @Html.TextBox("skuName") @*Two search box is not required, it is not properly aligned*@
         
              @Html.TextBox("brandName")   @Html.TextBox("skuName") 
             <input type="submit" value="Search" />
@@ -20,7 +22,7 @@
 <br />
 <br />
 <div class="container">
-    <table class="table table-responsive table-hover">
+    <table class="table table-responsive table-hover"> @*table is not responsive*@
         <tr>
             <th>Id</th>
             <th>Name</th>
