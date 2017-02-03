@@ -29,9 +29,22 @@ namespace Connection360.Web.Controllers
             {               
                result = result.Where(r => r.Name.Contains(brandName) || r.SkuName.Contains(skuName)).ToList();               
             }
-            int pageSize = 3;
+            else if(!String.IsNullOrWhiteSpace(brandName))
+            {
+                result = result.Where(r => r.Name.Contains(brandName)).ToList();
+            }
+            else if(!String.IsNullOrWhiteSpace(skuName))
+            {
+                result = result.Where(r => r.SkuName.Contains(skuName)).ToList();
+            }
+            int pageSize = 5;
             int pageNumber = (page ?? 1);
             return View(result.ToPagedList(pageNumber,pageSize));
+        }
+        public ActionResult Add()
+        {
+            return View();
+
         }
     }
 }

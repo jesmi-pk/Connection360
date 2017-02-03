@@ -9,11 +9,13 @@
 <div>
     @using (Html.BeginForm())
     {
-        <p>
-            Title: @Html.TextBox("brandName")  Title: @Html.TextBox("skuName") 
+        
+             @Html.TextBox("brandName")   @Html.TextBox("skuName") 
             <input type="submit" value="Search" />
-        </p>
-    }  
+            @Html.ActionLink("ADD BRAND", "Add",new { @class = "navbar-add" })
+
+
+    }
 </div>
 <br />
 <br />

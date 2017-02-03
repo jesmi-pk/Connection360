@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+}
+<br />
+@using (Html.BeginForm())
+{
+@Html.Label("Brand Name")
+@Html.TextBox("brandName")
+    <br />
+    @Html.Label("Brand Logo")
+    <br />
+    @Html.Label("Brand Description")
+    @Html.TextArea("brandDescription")
+    <br />
+    
+        <label for="file">Upload Image:</label>
+        <input type="file" name="file" id="file" style="width: 100%;" />
+        <input type="submit" value="Upload" class="submit" />
+
+        <input type="submit" value="SUBMIT" />
+        <input type="submit" value="CANCEL" />
+}
+
+
+
