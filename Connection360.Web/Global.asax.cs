@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Connection360.Web.Models;
+using Connection360.Web.Service;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
@@ -13,6 +16,9 @@ namespace Connection360.Web
     {
         protected void Application_Start()
         {
+            Database.SetInitializer<BrandModuleContext>(new BrandService());
+            Database.SetInitializer<BrandModuleContext>(new SkuService());
+           
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

@@ -1,4 +1,4 @@
-﻿@model PagedList.IPagedList<Connection360.Web.ViewModel.HomeViewModel>
+﻿@model PagedList.IPagedList<Connection360.Web.ViewModel.Brand_SkuViewModel>
 @using PagedList.Mvc;
 @{
     ViewBag.Title = "Index";
@@ -10,19 +10,19 @@
     @using (Html.BeginForm())
     {
         <p>
-            Title: @Html.TextBox("brandName")  Title: @Html.TextBox("skuName") @*Two search box is not required, it is not properly aligned*@
+            Title: @Html.TextBox("brandName")  Title: @Html.TextBox("skuName") 
         
              @Html.TextBox("brandName")   @Html.TextBox("skuName") 
             <input type="submit" value="Search" />
             @Html.ActionLink("ADD BRAND", "Add",new { @class = "navbar-add" })
-
+</p>
 
     }
 </div>
 <br />
 <br />
 <div class="container">
-    <table class="table table-responsive table-hover"> @*table is not responsive*@
+    <table class="table"> 
         <tr>
             <th>Id</th>
             <th>Name</th>

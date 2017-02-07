@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Connection360.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +9,11 @@ namespace Connection360.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private BrandModuleContext db = new BrandModuleContext();
         public ActionResult Index()
         {
-            return View();
+            var brands = db.Brands.ToList();
+            return View(brands);
         }
 
         public ActionResult About()

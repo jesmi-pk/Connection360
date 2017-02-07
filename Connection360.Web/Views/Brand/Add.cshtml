@@ -1,7 +1,8 @@
-﻿
+﻿@model IEnumerable<Connection360.Web.ViewModel.AddViewModel>
 @{
     ViewBag.Title = "Add";
 }
+<DOCTYPE html>
 <br />
 @using (Html.BeginForm())
 {
@@ -13,14 +14,60 @@
     @Html.Label("Brand Description")
     @Html.TextArea("brandDescription")
     <br />
-    
-        <label for="file">Upload Image:</label>
-        <input type="file" name="file" id="file" style="width: 100%;" />
-        <input type="submit" value="Upload" class="submit" />
 
-        <input type="submit" value="SUBMIT" />
-        <input type="submit" value="CANCEL" />
+        @*<label for="file">Upload Image:</label>
+        <input type="file" name="file" id="file" style="width: 100%;" />
+        <input type="submit" value="Upload" class="submit" />*@
+
+      
+           
+
+
+     
+            foreach (var item in Model)
+            {
+
+
+            @Html.Partial("View", item);
+    }
+   
+
+       
+        @*function GetDynamicControl(value)
+        {
+            return '<div><input type="text" name="skuName" /> <img id="blah" alt="your image" width="100" height="100" /><input type="file"onchange="document.getElementById().src = window.URL.createObjectURL(this.file[0])";><input type="button" onclick="RemoveControl(this)" value="Remove" /></div>'
+        }
+        function AddControl() {
+            var div = document.createElement('DIV');
+          
+            div.innerHTML=GetDynamicControl("");
+            document.getElementById("divContent").appendChild(div);
+            
+        }
+       
+
+
+        function RemoveControl(div) {
+            document.getElementById("divContent").removeChild(div.parentNode.parentNode);
+        }
+    </script>
+    <div id="divContent">
+        <div>
+            <input type="text" name="skuName" />
+            @*<input type="file" accept="image/*" onchange="showMyImage(this)" />
+           
+            <img id="thumbnil" style="width:20%; margin-top:10px;" src="" alt="image" />*@
+            @*<img id="blah" alt="your image" width="100" height="100" />
+            <input type="file"
+                   onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
+            <input type="button" onclick="AddControl()" value="Add" />
+        </div>
+    </div>*@
+
+    <input type="submit" value="SUBMIT" />
+    <input type="submit" value="CANCEL" />
 }
+</DOCTYPE>
 
 
 

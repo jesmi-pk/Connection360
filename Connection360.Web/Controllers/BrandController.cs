@@ -1,4 +1,5 @@
-﻿using Connection360.Web.Service;
+﻿using Connection360.Web.Models;
+using Connection360.Web.Service;
 using Connection360.Web.ViewModel;
 using PagedList;
 using System;
@@ -10,22 +11,25 @@ namespace Connection360.Web.Controllers
     public class BrandController : Controller
     {
         BrandService brandService = new BrandService();
+        private BrandModuleContext db = new BrandModuleContext();
         SkuService skuService = new SkuService();
-        HomeViewModel homeViewModel = new HomeViewModel();
+        Brand_SkuViewModel Brand_SkuViewModel = new Brand_SkuViewModel();
         public ActionResult Index(string brandName, string skuName, int? page)
         {
-            var result = (from b in brandService.brands
-                          join s in skuService.skus on b.Id
-                          equals s.Id
-                          select new HomeViewModel()
+            var brands = db.Brands.ToList();
+            var result = (from b in db.Brands
+                          join s in db.Skus on b.BrandId
+                          equals s.SkuId
+                          select new Brand_SkuViewModel()
                           {
-                              Id = b.Id,
+                              
+                              Id = b.BrandId,
                               Name = b.Name,
                               SkuName = s.Name
                           }).ToList();
-            if (!String.IsNullOrWhiteSpace(brandName) && !String.IsNullOrWhiteSpace(skuName)) //You dont require two variables, or two searchbox to search two items.
+            if (!String.IsNullOrWhiteSpace(brandName) && !String.IsNullOrWhiteSpace(skuName)) 
             {
-                result = result.Where(r => r.Name.Contains(brandName) || r.SkuName.Contains(skuName)).ToList();// search is not working properly, only if two search box have the same value, the value pair, it is showing result
+                result = result.Where(r => r.Name.Contains(brandName) || r.SkuName.Contains(skuName)).ToList();
             }
             else if(!String.IsNullOrWhiteSpace(brandName))
             {
@@ -41,8 +45,23 @@ namespace Connection360.Web.Controllers
         }
         public ActionResult Add()
         {
-            return View();
+         var result  = (from b in db.Brands
+                        join s in db.Skus on b.BrandId
+             equals s.SkuId
+             select new AddViewModel()
+             {
+                 Id = b.BrandId,
+                 Name = b.Name,
+                 BrandLogo=b.LogoUrl,
+                 BrandDescription=b.Description,
+                 SkuName=s.Name,
+                 SkuUrl=s.ImageUrl
+                 
+             }).ToList();
+
+            return View(result.ToList());
 
         }
+       
     }
 }
