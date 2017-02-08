@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Connection360.Web.Models
 {
-    public class BrandInitializer : DropCreateDatabaseIfModelChanges<BrandModuleContext>
+    public class BrandInitializer : DropCreateDatabaseAlways<BrandModuleContext>
     {
         protected override void Seed(BrandModuleContext context)
         {
