@@ -10,10 +10,10 @@ namespace Connection360.Web.Service
 {
     public class SkuService: DropCreateDatabaseIfModelChanges<BrandModuleContext>
     {
-        public List<Sku> skus { get; set; }
+      
         protected override void Seed (BrandModuleContext context)
         {
-            skus = new List<Sku>
+           var skus = new List<Sku>
             {
                 new Sku {SkuId=1, Name="dsfdsf",ImageUrl="~/images.jpg"},
                 new Sku {SkuId=2,Name="dfs",ImageUrl="~/images.jpg" },

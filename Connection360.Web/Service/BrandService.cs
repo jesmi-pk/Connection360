@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace Connection360.Web.Service
 {
-    public class BrandService : DropCreateDatabaseAlways<BrandModuleContext>
+    public class BrandService : DropCreateDatabaseIfModelChanges<BrandModuleContext>
     {
-        public List<Brand> brands { get; set; }
+      
         protected override void Seed(BrandModuleContext context)
         {
-            brands = new List<Brand>
+           var brands = new List<Brand>
             {
                 new Brand {BrandId=1, Name="Malboro",LogoUrl="~/images.jpg", Description="adad sdasd asdas" },
                 new Brand {BrandId=2,Name="Nicotex",LogoUrl="~/images.jpg",Description="adad sdasd asdas" },

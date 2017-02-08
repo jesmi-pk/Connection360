@@ -10,7 +10,7 @@ namespace Connection360.Web.Models
         public int SkuId { get; set; }
         public string Name { get; set; }
         public string ImageUrl { get; set; }
-        public ICollection<BrandSkuMap> Maps { get; set; }
+        public List<BrandSkuMap> BrandSkuMaps { get; set; }
 
     }
 }

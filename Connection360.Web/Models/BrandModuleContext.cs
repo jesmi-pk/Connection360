@@ -11,7 +11,7 @@ namespace Connection360.Web.Models
     {
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Sku> Skus { get; set; }
-        public DbSet<BrandSkuMap> Maps { get; set; }
+        public DbSet<BrandSkuMap> BrandSkuMaps { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -10,9 +10,9 @@ namespace Connection360.Web.Controllers
 {
     public class BrandController : Controller
     {
-        BrandService brandService = new BrandService();
+        //BrandService brandService = new BrandService();
         private BrandModuleContext db = new BrandModuleContext();
-        SkuService skuService = new SkuService();
+        //SkuService skuService = new SkuService();
         Brand_SkuViewModel Brand_SkuViewModel = new Brand_SkuViewModel();
         public ActionResult Index(string brandName, string skuName, int? page)
         {

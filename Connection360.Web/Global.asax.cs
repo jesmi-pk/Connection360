@@ -16,8 +16,8 @@ namespace Connection360.Web
     {
         protected void Application_Start()
         {
-            Database.SetInitializer<BrandModuleContext>(new BrandService());
-            Database.SetInitializer<BrandModuleContext>(new SkuService());
+            Database.SetInitializer<BrandModuleContext>(new BrandInitializer());
+          
            
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
