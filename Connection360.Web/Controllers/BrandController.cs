@@ -4,6 +4,7 @@ using Connection360.Web.ViewModel;
 using PagedList;
 using System;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Connection360.Web.Controllers
@@ -43,36 +44,32 @@ namespace Connection360.Web.Controllers
         }
         public ActionResult Add()
         {
-            //var result  = (from b in db.Brands
-            //               join s in db.Skus on b.BrandId
-            //    equals s.SkuId
-            //    select new AddViewModel()
-            //    {
-            //        Id = b.BrandId,
-            //        Name = b.Name,
-            //        BrandLogo=b.LogoUrl,
-            //        BrandDescription=b.Description,
-            //        SkuName=s.Name,
-            //        SkuUrl=s.ImageUrl
-
-            //    }).ToList();
-
-            //   return View(result.ToList());
             return View();
         }
 
         [HttpPost]
-        public ActionResult Add([Bind(Include ="BrandID,Name,Description")] Brand brand)
+        public ActionResult Add(Brand brand,HttpPostedFileBase file)      
         {
             if (ModelState.IsValid)
             {
+                if (file != null && file.ContentLength>0)
+                {
+                    string ImageName = System.IO.Path.GetFileName(file.FileName);
+                    string physicalPath = Server.MapPath("~/images/" + ImageName);
+                    file.SaveAs(physicalPath);
+                    brand.LogoUrl = ImageName;
+                }                 
+                brand.Name = Request.Form["Name"];
+                brand.Description = Request.Form["Description"];
                 db.Brands.Add(brand);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             return View(brand);
-           
+
+
+
         }
        
     }

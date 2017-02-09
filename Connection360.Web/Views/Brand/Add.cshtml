@@ -4,15 +4,18 @@
 }
 <DOCTYPE html>
 <br />
-@using (Html.BeginForm())
+@using (Html.BeginForm("Add", "Brand", FormMethod.Post,new {enctype = "multipart/form-data" }))
 {
 @Html.Label("Brand Name")
-@Html.TextBox("brandName")
+@Html.TextBox("Name")
     <br />
     @Html.Label("Brand Logo")
     <br />
+    <input type="file" name="file" id="file" style="width: 100%;" /> 
+    <br />
     @Html.Label("Brand Description")
-    @Html.TextArea("brandDescription")
+  
+    @Html.TextArea("Description")
     <br />
 
         @*<label for="file">Upload Image:</label>
