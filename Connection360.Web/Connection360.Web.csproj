@@ -183,6 +183,38 @@
     <Compile Include="Migrations\201702070940459_InitialCreate.Designer.cs">
       <DependentUpon>201702070940459_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702100455228_Addvalidation.cs" />
+    <Compile Include="Migrations\201702100455228_Addvalidation.Designer.cs">
+      <DependentUpon>201702100455228_Addvalidation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702100656589_ChangeValidation.cs" />
+    <Compile Include="Migrations\201702100656589_ChangeValidation.Designer.cs">
+      <DependentUpon>201702100656589_ChangeValidation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702100713386_ChangeValidations.cs" />
+    <Compile Include="Migrations\201702100713386_ChangeValidations.Designer.cs">
+      <DependentUpon>201702100713386_ChangeValidations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702100718345_AddedValidation.cs" />
+    <Compile Include="Migrations\201702100718345_AddedValidation.Designer.cs">
+      <DependentUpon>201702100718345_AddedValidation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702100955263_AddedValidations.cs" />
+    <Compile Include="Migrations\201702100955263_AddedValidations.Designer.cs">
+      <DependentUpon>201702100955263_AddedValidations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702101141083_AddedValidations1.cs" />
+    <Compile Include="Migrations\201702101141083_AddedValidations1.Designer.cs">
+      <DependentUpon>201702101141083_AddedValidations1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702101151209_AddedValidations2.cs" />
+    <Compile Include="Migrations\201702101151209_AddedValidations2.Designer.cs">
+      <DependentUpon>201702101151209_AddedValidations2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702130858482_validation.cs" />
+    <Compile Include="Migrations\201702130858482_validation.Designer.cs">
+      <DependentUpon>201702130858482_validation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\BrandInitializer.cs" />
@@ -245,8 +277,11 @@
     <Content Include="Views\Brand\Add.cshtml" />
     <Content Include="Views\Shared\View.cshtml" />
     <Content Include="Views\Brand\Index.cshtml" />
+    <Content Include="Views\Brand\TestView.cshtml" />
+    <Content Include="Views\Brand\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Helpers\" />
     <Folder Include="images\" />
   </ItemGroup>
   <ItemGroup>
@@ -260,6 +295,30 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201702070940459_InitialCreate.resx">
       <DependentUpon>201702070940459_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702100455228_Addvalidation.resx">
+      <DependentUpon>201702100455228_Addvalidation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702100656589_ChangeValidation.resx">
+      <DependentUpon>201702100656589_ChangeValidation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702100713386_ChangeValidations.resx">
+      <DependentUpon>201702100713386_ChangeValidations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702100718345_AddedValidation.resx">
+      <DependentUpon>201702100718345_AddedValidation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702100955263_AddedValidations.resx">
+      <DependentUpon>201702100955263_AddedValidations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702101141083_AddedValidations1.resx">
+      <DependentUpon>201702101141083_AddedValidations1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702101151209_AddedValidations2.resx">
+      <DependentUpon>201702101151209_AddedValidations2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702130858482_validation.resx">
+      <DependentUpon>201702130858482_validation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

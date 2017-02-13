@@ -7,10 +7,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+using System.Drawing;
+using System.Drawing.Imaging;
+
 namespace Connection360.Web.Controllers
 {
     public class BrandController : Controller
-    {       
+    {
+        Brand brand = new Brand();
         private BrandModuleContext db = new BrandModuleContext();       
         Brand_SkuViewModel Brand_SkuViewModel = new Brand_SkuViewModel();
         public ActionResult Index(string brandName, string skuName, int? page)
@@ -42,31 +46,59 @@ namespace Connection360.Web.Controllers
             int pageNumber = (page ?? 1);
             return View(result.ToPagedList(pageNumber, pageSize));
         }
-        public ActionResult Add()
+        public ActionResult Create()
         {
             return View();
         }
-
+        
         [HttpPost]
-        public ActionResult Add(Brand brand,HttpPostedFileBase file)      
+       
+        public ActionResult Create(AddViewModel addViewModel,HttpPostedFileBase file)      
+       
         {
-            if (ModelState.IsValid)
-            {
-                if (file != null && file.ContentLength>0)
+            int maxContent = 1024 * 1024; //1 MB
+            string[] sAllowedExt = new string[] { ".jpg", ".gif", ".png" };
+
+
+           
+
+          
+            
+                
+
+           
+                if (file == null)
+                    ModelState.AddModelError("", "Please upload a file");
+                else if (!sAllowedExt.Contains(file.FileName.Substring(file.FileName.LastIndexOf('.'))))
+                {
+                    string ErrorMessage = "Please upload Your Photo of type: " + string.Join(", ", sAllowedExt);
+                    ModelState.AddModelError("", ErrorMessage);
+
+                }
+                else if (file.ContentLength > maxContent)
+                {
+                    string ErrorMessage = "Your Photo is too large, maximum allowed size is : " + (maxContent / 1024).ToString() + "MB";
+                    ModelState.AddModelError("", ErrorMessage);
+                }
+                else if (file != null && file.ContentLength > 0)
                 {
                     string ImageName = System.IO.Path.GetFileName(file.FileName);
                     string physicalPath = Server.MapPath("~/images/" + ImageName);
                     file.SaveAs(physicalPath);
                     brand.LogoUrl = ImageName;
-                }                 
-                brand.Name = Request.Form["Name"];
-                brand.Description = Request.Form["Description"];
+                }
+
+            if (ModelState.IsValid)
+            {
+                brand.Name = addViewModel.brand.Name;
+                brand.Description = addViewModel.brand.Description;
                 db.Brands.Add(brand);
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
 
-            return View(brand);
+            return View();
 
 
 

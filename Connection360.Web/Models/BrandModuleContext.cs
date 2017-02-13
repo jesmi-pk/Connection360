@@ -17,5 +17,7 @@ namespace Connection360.Web.Models
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
+
+        public System.Data.Entity.DbSet<Connection360.Web.ViewModel.AddViewModel> AddViewModels { get; set; }
     }
 }
